@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001_create_nutrition.sql
+  - include:
+      file: db/changelog/002_create_smoothie.sql
+  - include:
+      file: db/changelog/003_create_order.sql
