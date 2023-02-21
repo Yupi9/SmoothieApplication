@@ -1,7 +1,9 @@
 package com.company.smoothie.service;
 
+import com.company.smoothie.bean.Nutrition;
 import com.company.smoothie.bean.Smoothie;
 import com.company.smoothie.exception.DuplicateNameException;
+import com.company.smoothie.exception.IncorrectNutritionException;
 import com.company.smoothie.repository.SmoothieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,7 @@ public class SmoothieService {
     }
 
     public Smoothie saveOrUpdateSmoothie(Smoothie smoothie) {
+        validateNutrition(smoothie.getNutrition());
         String name = smoothie.getName();
         smoothieRepository.findByName(name).ifPresent(smoothieOld -> {
             if (Objects.isNull(smoothie.getId()) || !smoothieOld.getId().equals(smoothie.getId())) {
@@ -40,5 +43,11 @@ public class SmoothieService {
             }
         });
         return smoothieRepository.save(smoothie);
+    }
+
+    public void validateNutrition(Nutrition nutrition) {
+        if (nutrition.getCarbohydrate() + nutrition.getFat() + nutrition.getProtein() > 100) {
+            throw new IncorrectNutritionException("Sum of nutrition elements should not be more than 100");
+        }
     }
 }

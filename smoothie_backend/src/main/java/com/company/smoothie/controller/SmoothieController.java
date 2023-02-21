@@ -1,8 +1,8 @@
 package com.company.smoothie.controller;
 
 import com.company.smoothie.bean.Smoothie;
-import com.company.smoothie.exception.DuplicateNameException;
 import com.company.smoothie.service.SmoothieService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,16 +38,12 @@ public class SmoothieController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveOrUpdateSmoothie(@RequestBody Smoothie smoothie) {
-        try {
-            Smoothie newSmoothie = smoothieService.saveOrUpdateSmoothie(smoothie);
-            if (Objects.isNull(smoothie.getId())) {
-                return ResponseEntity.status(HttpStatus.CREATED).body(newSmoothie);
-            }
-            return ResponseEntity.ok(newSmoothie);
-        } catch (DuplicateNameException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity<?> saveOrUpdateSmoothie(@Valid @RequestBody Smoothie smoothie) {
+        Smoothie newSmoothie = smoothieService.saveOrUpdateSmoothie(smoothie);
+        if (Objects.isNull(smoothie.getId())) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(newSmoothie);
         }
+        return ResponseEntity.ok(newSmoothie);
     }
 
     @DeleteMapping("/{id}")

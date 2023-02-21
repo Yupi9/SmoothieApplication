@@ -29,5 +29,5 @@ public class OrderItem {
     @JoinColumn(name = "smoothie_id", referencedColumnName = "id")
     private Smoothie smoothie;
 
-    private Integer quantity;
+    private int quantity;
 }
