@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   db:
+    container_name: smoothie-database
     image: postgres:14.1-alpine
     restart: always
     environment:
@@ -9,3 +10,16 @@ services:
       - POSTGRES_DB=smoothie
     ports:
       - '5432:5432'
+
+  backend:
+    build:
+      context: ./smoothie_backend
+      dockerfile: ./Dockerfile
+    environment:
+      - DATABASE_URL=jdbc:postgresql://smoothie-database:5432/smoothie
+      - DATABASE_USERNAME=admin
+      - DATABASE_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
