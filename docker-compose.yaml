@@ -12,6 +12,7 @@ services:
       - '5432:5432'
 
   backend:
+    container_name: smoothie-backend
     build:
       context: ./smoothie_backend
       dockerfile: ./Dockerfile
@@ -23,3 +24,12 @@ services:
       - "8080:8080"
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./smoothie-frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
