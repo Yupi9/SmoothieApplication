@@ -9,9 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -25,7 +25,7 @@ public class Smoothie {
     private Long id;
 
     @NotBlank(message = "Name should not be an empty")
-    @Max(value = 100, message = "Name size should not be greater than 100")
+    @Size(max = 100, message = "Name size should not be greater than 100")
     private String name;
 
     @NotBlank(message = "Ingredients should not be an empty")

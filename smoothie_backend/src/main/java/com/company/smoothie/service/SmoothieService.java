@@ -46,7 +46,7 @@ public class SmoothieService {
     }
 
     public void validateNutrition(Nutrition nutrition) {
-        if (nutrition.getCarbohydrate() + nutrition.getFat() + nutrition.getProtein() > 100) {
+        if (nutrition.getCarbohydrate().doubleValue() + nutrition.getFat().doubleValue() + nutrition.getProtein().doubleValue() > 100) {
             throw new IncorrectNutritionException("Sum of nutrition elements should not be more than 100");
         }
     }

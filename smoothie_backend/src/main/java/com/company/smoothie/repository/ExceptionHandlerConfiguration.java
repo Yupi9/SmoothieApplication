@@ -1,6 +1,7 @@
 package com.company.smoothie.repository;
 
 import com.company.smoothie.exception.ValidationException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -13,7 +14,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionHandlerConfiguration extends ResponseEntityExceptionHandler {
@@ -30,7 +33,15 @@ public class ExceptionHandlerConfiguration extends ResponseEntityExceptionHandle
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
-
+    @ExceptionHandler({ConstraintViolationException.class})
+    protected ResponseEntity<Object> handleConstraintConflict(
+            ConstraintViolationException ex, WebRequest request) {
+        List<String> messages = ex.getConstraintViolations().stream()
+                .map(constraintViolation -> constraintViolation.getMessage())
+                .collect(Collectors.toList());
+        return handleExceptionInternal(ex, messages,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
 
     @ExceptionHandler({ValidationException.class, IllegalArgumentException.class})
     protected ResponseEntity<Object> handleConflict(
