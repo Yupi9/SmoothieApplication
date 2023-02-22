@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class CreateOrderRequest {
 
     @NotBlank(message = "Customer name should not be an empty")
-    @Max(value = 50, message = "Customer name size should not be greater than 50")
+    @Size(max = 50, message = "Customer name size should not be greater than 50")
     private String customerName;
 
     @NotBlank(message = "Customer phone number should not be an empty")
