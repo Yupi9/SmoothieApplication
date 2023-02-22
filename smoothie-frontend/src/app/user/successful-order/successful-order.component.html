@@ -1,0 +1,17 @@
+<div>
+    <h1>Dear {{order?.customerName}}, on this page you can track order status</h1>
+    <div>
+        <h2>Your phone number: {{order?.customerPhoneNumber}}</h2>
+    </div>
+    <div>
+        <h2>Order status: {{order?.status}}</h2>
+    </div>
+    <div>
+        Your order:
+        <div *ngFor="let item of order?.orderItems">
+            <div>
+              Smoothie  with name {{item.smoothie.name}} and quantity {{item.quantity}}
+            </div>
+        </div>
+    </div>
+</div>

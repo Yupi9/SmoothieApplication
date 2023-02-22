@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { UserComponent } from './user/user.component';
+import { OrderDialogComponent } from './user/order-dialog/order-dialog.component';
+import { SuccessfulOrderComponent } from './user/successful-order/successful-order.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { MatInputModule } from '@angular/material/input';
     MainComponent,
     BusinessOwnerComponent,
     SmothieComponent,
-    SmothieEditDialogComponent
+    SmothieEditDialogComponent,
+    UserComponent,
+    OrderDialogComponent,
+    SuccessfulOrderComponent
   ],
   imports: [
     BrowserModule,

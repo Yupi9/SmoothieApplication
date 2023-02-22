@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Smoothie</h1>
+<div mat-dialog-content>
+    <form [formGroup]="orderForm">
+        <div class="input-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="orderForm.controls['name'].hasError('required')">Name should exist!</mat-error>
+                <mat-error *ngIf="orderForm.controls['name'].hasError('maxlength')">Name size should be less than 50
+                    symbols!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="input-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter phoneNumber</mat-label>
+                <input matInput formControlName="phoneNumber">
+                <mat-error *ngIf="orderForm.controls['phoneNumber'].hasError('required')">Phone number should
+                    exist!</mat-error>
+                <mat-error *ngIf="orderForm.controls['phoneNumber'].hasError('pattern')">Phone number should contains
+                    only numbers and + exist!</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close (click)="sendOrder()" [disabled]="orderForm.invalid">Save</button>
+</div>

@@ -1,0 +1,55 @@
+<table mat-table [dataSource]="smoothies">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ingredients">
+        <th mat-header-cell *matHeaderCellDef> Ingredients </th>
+        <td mat-cell *matCellDef="let element"> {{element.ingredients}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="energy">
+        <th mat-header-cell *matHeaderCellDef> Energy(kkal) </th>
+        <td mat-cell *matCellDef="let element"> {{element.nutrition.energy}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="protein">
+        <th mat-header-cell *matHeaderCellDef> Protein </th>
+        <td mat-cell *matCellDef="let element"> {{element.nutrition.protein}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fat">
+        <th mat-header-cell *matHeaderCellDef> Fat </th>
+        <td mat-cell *matCellDef="let element"> {{element.nutrition.fat}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carbohydrate">
+        <th mat-header-cell *matHeaderCellDef> Carbohydrate </th>
+        <td mat-cell *matCellDef="let element"> {{element.nutrition.carbohydrate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field class="example-full-width">
+                <input matInput type="number" [(ngModel)]="element.quantity" min="0" max="10">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" style="margin-right: 2em;" (click)="addSmoothie(element)" [disabled]="element.quantity == 10">Add Smoothie to Card</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+</mat-paginator>
+
+<button mat-raised-button color="primary" style="margin-right: 2em;" (click)="finishOrder()" [disabled]="!isAnySmoothieSelected()">Take a order</button>
