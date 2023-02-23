@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Smoothie } from '../models/smoothie';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError} from 'rxjs/operators'
 import { environment } from 'src/enviroments/enviroment';
@@ -11,6 +11,7 @@ import { environment } from 'src/enviroments/enviroment';
 export class SmoothieService {
 
   baseUrl: string = environment.baseUrl;
+  user: any = environment.credentials.users[0];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,11 +20,25 @@ export class SmoothieService {
   }
 
   deleteSmoothie(id: number): Observable<any> {
-    return this.httpClient.delete<Smoothie[]>(`${this.baseUrl}/smoothies/${id}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + window.btoa(this.user.username + ':' + this.user.password),
+      })
+    };
+
+    return this.httpClient.delete<Smoothie[]>(`${this.baseUrl}/smoothies/${id}`, httpOptions);
   }
 
   saveSmoothie(smoothie: Smoothie): Observable<Smoothie> {
-    return this.httpClient.post<Smoothie>(`${this.baseUrl}/smoothies`, smoothie).pipe(catchError(this.handleError));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + window.btoa(this.user.username + ':' + this.user.password),
+      })
+    };
+
+    return this.httpClient.post<Smoothie>(`${this.baseUrl}/smoothies`, smoothie, httpOptions).pipe(catchError(this.handleError));
   }
 
 
