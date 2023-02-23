@@ -1,8 +1,8 @@
 package com.company.smoothie.controller;
 
-import com.company.smoothie.bean.Order;
-import com.company.smoothie.model.ChangeOrderStatusRequest;
-import com.company.smoothie.model.CreateOrderRequest;
+import com.company.smoothie.dto.ChangeOrderStatusRequest;
+import com.company.smoothie.dto.CreateOrderRequest;
+import com.company.smoothie.entity.Order;
 import com.company.smoothie.service.OrderService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,9 +28,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @RolesAllowed("OWNER")
     @GetMapping
-    public ResponseEntity<List<Order>> getOrders() {
-        return ResponseEntity.ok(orderService.getOrders());
+    @ResponseStatus(HttpStatus.OK)
+    public List<Order> getOrders() {
+        return orderService.getOrders();
     }
 
     @GetMapping("/{id}")
@@ -38,8 +41,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@Valid @RequestBody CreateOrderRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.orderService.createOrder(request));
+    @ResponseStatus(HttpStatus.CREATED)
+    public Order createOrder(@Valid @RequestBody CreateOrderRequest request) {
+        return this.orderService.createOrder(request);
     }
 
     @RolesAllowed("OWNER")

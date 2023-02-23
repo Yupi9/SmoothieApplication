@@ -1,7 +1,7 @@
 package com.company.smoothie.repository;
 
-import com.company.smoothie.bean.Order;
-import com.company.smoothie.bean.OrderStatus;
+import com.company.smoothie.entity.Order;
+import com.company.smoothie.entity.OrderStatus;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

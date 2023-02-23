@@ -1,4 +1,4 @@
-package com.company.smoothie.bean;
+package com.company.smoothie.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

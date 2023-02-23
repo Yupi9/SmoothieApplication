@@ -1,6 +1,6 @@
 package com.company.smoothie.controller;
 
-import com.company.smoothie.bean.Smoothie;
+import com.company.smoothie.entity.Smoothie;
 import com.company.smoothie.service.SmoothieService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,8 +30,9 @@ public class SmoothieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Smoothie>> getSmoothies() {
-        return ResponseEntity.ok(this.smoothieService.getSmoothies());
+    @ResponseStatus(HttpStatus.OK)
+    public List<Smoothie> getSmoothies() {
+        return this.smoothieService.getSmoothies();
     }
 
     @GetMapping("/{id}")
@@ -50,9 +52,9 @@ public class SmoothieController {
 
     @RolesAllowed("OWNER")
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteSmoothie(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteSmoothie(@PathVariable Long id) {
         smoothieService.deleteSmoothie(id);
-        return ResponseEntity.ok().build();
     }
 
 }

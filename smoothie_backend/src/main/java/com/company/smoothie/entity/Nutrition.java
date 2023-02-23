@@ -1,4 +1,4 @@
-package com.company.smoothie.bean;
+package com.company.smoothie.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,17 +23,17 @@ public class Nutrition {
     private Long id;
 
     @DecimalMin(value = "0.01", message = "Energy should not be less than 0")
-    private BigDecimal energy;
+    private double energy;
 
     @DecimalMin(value = "0.01", message = "Protein should not be less than 0")
     @DecimalMax(value = "100.00", message = "Protein should not be greater than 100")
-    private BigDecimal protein;
+    private double protein;
 
     @DecimalMin(value = "0.01", message = "Fat should not be less than 0")
     @DecimalMax(value = "100.00", message = "Fat should not be greater than 100")
-    private BigDecimal fat;
+    private double fat;
 
     @DecimalMin(value = "0.01", message = "Carbohydrate should not be less than 0")
     @DecimalMax(value = "100.00", message = "Carbohydrate should not be greater than 100")
-    private BigDecimal carbohydrate;
+    private double carbohydrate;
 }

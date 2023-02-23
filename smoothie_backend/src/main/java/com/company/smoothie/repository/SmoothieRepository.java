@@ -1,6 +1,6 @@
 package com.company.smoothie.repository;
 
-import com.company.smoothie.bean.Smoothie;
+import com.company.smoothie.entity.Smoothie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

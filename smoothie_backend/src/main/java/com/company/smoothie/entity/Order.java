@@ -1,4 +1,4 @@
-package com.company.smoothie.bean;
+package com.company.smoothie.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;

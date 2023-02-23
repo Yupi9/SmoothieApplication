@@ -1,7 +1,6 @@
-package com.company.smoothie.model;
+package com.company.smoothie.dto;
 
-import com.company.smoothie.bean.OrderStatus;
-import jakarta.validation.constraints.Max;
+import com.company.smoothie.entity.OrderStatus;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

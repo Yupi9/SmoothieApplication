@@ -1,4 +1,4 @@
-package com.company.smoothie.bean;
+package com.company.smoothie.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;

@@ -1,6 +1,6 @@
-package com.company.smoothie.model;
+package com.company.smoothie.dto;
 
-import com.company.smoothie.bean.OrderStatus;
+import com.company.smoothie.entity.OrderStatus;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 

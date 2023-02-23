@@ -1,7 +1,7 @@
 package com.company.smoothie.service;
 
-import com.company.smoothie.bean.Nutrition;
-import com.company.smoothie.bean.Smoothie;
+import com.company.smoothie.entity.Nutrition;
+import com.company.smoothie.entity.Smoothie;
 import com.company.smoothie.exception.DuplicateNameException;
 import com.company.smoothie.exception.IncorrectNutritionException;
 import com.company.smoothie.repository.SmoothieRepository;
@@ -46,7 +46,7 @@ public class SmoothieService {
     }
 
     public void validateNutrition(Nutrition nutrition) {
-        if (nutrition.getCarbohydrate().doubleValue() + nutrition.getFat().doubleValue() + nutrition.getProtein().doubleValue() > 100) {
+        if (nutrition.getCarbohydrate() + nutrition.getFat() + nutrition.getProtein() > 100) {
             throw new IncorrectNutritionException("Sum of nutrition elements should not be more than 100");
         }
     }

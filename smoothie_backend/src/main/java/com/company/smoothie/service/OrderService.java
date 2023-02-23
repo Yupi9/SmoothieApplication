@@ -1,11 +1,11 @@
 package com.company.smoothie.service;
 
-import com.company.smoothie.bean.Order;
-import com.company.smoothie.bean.OrderItem;
-import com.company.smoothie.bean.OrderStatus;
-import com.company.smoothie.bean.Smoothie;
+import com.company.smoothie.dto.CreateOrderRequest;
+import com.company.smoothie.entity.Order;
+import com.company.smoothie.entity.OrderItem;
+import com.company.smoothie.entity.OrderStatus;
+import com.company.smoothie.entity.Smoothie;
 import com.company.smoothie.exception.SmoothieNotFoundException;
-import com.company.smoothie.model.CreateOrderRequest;
 import com.company.smoothie.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
