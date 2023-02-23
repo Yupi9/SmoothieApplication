@@ -2,6 +2,7 @@ package com.company.smoothie.controller;
 
 import com.company.smoothie.bean.Smoothie;
 import com.company.smoothie.service.SmoothieService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,7 @@ public class SmoothieController {
         return this.smoothieService.getSmoothie(id).map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
     }
 
+    @RolesAllowed("OWNER")
     @PostMapping
     public ResponseEntity<?> saveOrUpdateSmoothie(@Valid @RequestBody Smoothie smoothie) {
         Smoothie newSmoothie = smoothieService.saveOrUpdateSmoothie(smoothie);
@@ -46,6 +48,7 @@ public class SmoothieController {
         return ResponseEntity.ok(newSmoothie);
     }
 
+    @RolesAllowed("OWNER")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteSmoothie(@PathVariable Long id) {
         smoothieService.deleteSmoothie(id);
