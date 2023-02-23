@@ -6,14 +6,16 @@
                 <mat-label>Enter smoothie name</mat-label>
                 <input matInput formControlName="name">
                 <mat-error *ngIf="smoothieForm.controls['name'].hasError('required')">Name should exist!</mat-error>
-                <mat-error *ngIf="smoothieForm.controls['name'].hasError('maxlength')">Name size should be less than 100 symbols!</mat-error>
+                <mat-error *ngIf="smoothieForm.controls['name'].hasError('maxlength')">Name size should be less than 100
+                    symbols!</mat-error>
             </mat-form-field>
         </div>
         <div class="input-container">
             <mat-form-field appearance="fill">
                 <mat-label>Enter ingredients</mat-label>
                 <input matInput formControlName="ingredients">
-                <mat-error *ngIf="smoothieForm.controls['ingredients'].hasError('required')">Ingredients should exist!</mat-error>
+                <mat-error *ngIf="smoothieForm.controls['ingredients'].hasError('required')">Ingredients should
+                    exist!</mat-error>
             </mat-form-field>
         </div>
         <div formGroupName="nutrition">
@@ -21,35 +23,51 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Enter energy(kkal)</mat-label>
                     <input matInput formControlName="energy">
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['energy'].hasError('required')">Energy should exist!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['energy'].hasError('pattern')">Energy should contains only digits!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['energy'].hasError('required')">Energy
+                        should exist!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['energy'].hasError('pattern')">Energy
+                        should contains only digits!</mat-error>
                 </mat-form-field>
             </div>
             <div class="input-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Enter protein</mat-label>
                     <input matInput formControlName="protein">
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('required')">Protein should exist!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('pattern')">Protein should contains only digits!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('max')">Protein should be less than 100!</mat-error>
+                    <mat-error
+                        *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('required')">Protein
+                        should exist!</mat-error>
+                    <mat-error
+                        *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('pattern')">Protein
+                        should contains only digits!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['protein'].hasError('max')">Protein
+                        should be less than 100!</mat-error>
                 </mat-form-field>
             </div>
             <div class="input-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Enter fat</mat-label>
                     <input matInput formControlName="fat">
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('required')">Fat should exist!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('pattern')">Fat should contains only digits!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('max')">Fat should be less than 100!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('required')">Fat
+                        should exist!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('pattern')">Fat should
+                        contains only digits!</mat-error>
+                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['fat'].hasError('max')">Fat should be
+                        less than 100!</mat-error>
                 </mat-form-field>
             </div>
             <div class="input-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Enter carbohydrate</mat-label>
                     <input matInput formControlName="carbohydrate">
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('required')">Carbohydrate should exist!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('pattern')">Carbohydrate should contains only digits!</mat-error>
-                    <mat-error *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('max')">Carbohydrate should be less than 100!</mat-error>
+                    <mat-error
+                        *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('required')">Carbohydrate
+                        should exist!</mat-error>
+                    <mat-error
+                        *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('pattern')">Carbohydrate
+                        should contains only digits!</mat-error>
+                    <mat-error
+                        *ngIf="smoothieForm.controls['nutrition'].controls['carbohydrate'].hasError('max')">Carbohydrate
+                        should be less than 100!</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -57,5 +75,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="{reload:false}">Cancel</button>
-    <button mat-button [mat-dialog-close]="{reload:true}" (click)="saveSmoothie()" [disabled]="smoothieForm.invalid">Save</button>
+    <button mat-button [mat-dialog-close]="{reload:true}" (click)="saveSmoothie()"
+        [disabled]="smoothieForm.invalid">Save</button>
 </div>

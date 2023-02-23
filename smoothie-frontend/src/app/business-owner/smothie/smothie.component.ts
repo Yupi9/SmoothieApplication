@@ -1,27 +1,29 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Smoothie } from 'src/app/shared/models/smoothie';
 import { SmoothieService } from 'src/app/shared/services/smoothie.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SmothieEditDialogComponent } from './smothie-edit-dialog/smothie-edit-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-smothie',
   templateUrl: './smothie.component.html',
   styleUrls: ['./smothie.component.css']
 })
-export class SmothieComponent {
+export class SmothieComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'ingredients', 'energy', 'protein', 'fat', 'carbohydrate', 'actions'];
-  smoothies: Smoothie[] = [];
+  smoothieDataSource: MatTableDataSource<Smoothie>;
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private smoothieService: SmoothieService, public dialog: MatDialog) {
+    this.smoothieDataSource = new MatTableDataSource();
+    this.loadSmoothies();
   }
 
   ngAfterViewInit() {
-    this.smoothieService.getSmoothies().subscribe(smoothies => (this.smoothies = smoothies));
+    this.smoothieDataSource.paginator = this.paginator;
   }
 
   onDelete(smothie: Smoothie): void {
@@ -29,29 +31,17 @@ export class SmothieComponent {
   }
 
   loadSmoothies() {
-    this.smoothieService.getSmoothies().subscribe(smoothies => (this.smoothies = smoothies));
+    this.smoothieService.getSmoothies().subscribe(smoothies => (this.smoothieDataSource.data = smoothies));
   }
 
-  openAddDialog() {
-    this.dialog.open(SmothieEditDialogComponent, {
-      data: {
-        smoothie: null,
-      }
-    }).afterClosed().subscribe(result => {
-      if(result.reload){
-        this.loadSmoothies();
-      }
-    });
-  }
-
-  openEditDialog(smoothie: Smoothie) {
+  openEditDialog(smoothie: Smoothie | null) {
     this.dialog.open(SmothieEditDialogComponent, {
       width: '400px',
       data: {
         smoothie: smoothie,
       }
     }).afterClosed().subscribe(result => {
-      if(result.reload){
+      if (result.reload) {
         this.loadSmoothies();
       }
     });
