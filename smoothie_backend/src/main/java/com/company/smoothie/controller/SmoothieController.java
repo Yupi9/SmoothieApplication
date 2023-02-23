@@ -53,8 +53,8 @@ public class SmoothieController {
     @RolesAllowed("OWNER")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteSmoothie(@PathVariable Long id) {
-        smoothieService.deleteSmoothie(id);
+    public void archiveSmoothie(@PathVariable Long id) {
+        smoothieService.archiveSmoothie(id);
     }
 
 }

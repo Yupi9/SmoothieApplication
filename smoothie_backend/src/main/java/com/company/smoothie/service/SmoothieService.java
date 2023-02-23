@@ -5,6 +5,7 @@ import com.company.smoothie.entity.Smoothie;
 import com.company.smoothie.exception.DuplicateNameException;
 import com.company.smoothie.exception.IncorrectNutritionException;
 import com.company.smoothie.repository.SmoothieRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,16 @@ public class SmoothieService {
     }
 
     public List<Smoothie> getSmoothies() {
-        return smoothieRepository.findAll();
+        return smoothieRepository.findByIsArchivedFalse();
     }
 
     public Optional<Smoothie> getSmoothie(Long id) {
         return smoothieRepository.findById(id);
     }
 
-    public void deleteSmoothie(Long id) {
-        smoothieRepository.deleteById(id);
+    @Transactional
+    public void archiveSmoothie(Long id) {
+        smoothieRepository.archiveSmoothie(id);
     }
 
     public Smoothie saveOrUpdateSmoothie(Smoothie smoothie) {

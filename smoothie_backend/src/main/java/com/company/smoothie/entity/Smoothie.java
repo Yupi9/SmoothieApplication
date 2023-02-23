@@ -31,6 +31,8 @@ public class Smoothie {
     @NotBlank(message = "Ingredients should not be an empty")
     private String ingredients;
 
+    private boolean isArchived;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nutrition_id", referencedColumnName = "id")
     @NotNull(message = "Nutrition should not be null")
