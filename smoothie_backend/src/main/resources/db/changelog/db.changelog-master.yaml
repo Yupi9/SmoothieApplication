@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/002_create_smoothie.sql
   - include:
       file: db/changelog/003_create_order.sql
+  - include:
+      file: db/changelog/004_test_data.sql
