@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Smoothie } from 'src/app/shared/models/smoothie';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, Validators, FormBuilder, UntypedFormControl } from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SmoothieService } from 'src/app/shared/services/smoothie.service';
 
 export interface DialogData {

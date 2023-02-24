@@ -1,4 +1,4 @@
-export interface Smoothie {
+export interface Smoothie{
     id?: number;
     name: string;
     ingredients: string;
